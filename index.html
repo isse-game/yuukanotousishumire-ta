@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ユウカの投資シミュレーター</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- タイトル画面 -->
+  <section id="titleScreen" class="screen active">
+    <img src="images/taitoru.png" class="full-bg" alt="タイトル画面">
+    <button id="titleStartBtn" class="click-area title-start-area">
+      ゲーム開始
+    </button>
+  </section>
+
+  <!-- ストーリー画面 -->
+<section id="storyScreen" class="screen">
+  <img src="images/Story.png" class="full-bg" alt="">
+
+  <button id="storySkipBtn" class="story-skip-btn">
+    ▶ スキップ
+  </button>
+
+  <div class="story-overlay">
+    <div id="storyText" class="story-text"></div>
+
+    <button id="storyNextBtn" class="story-next-btn hidden">
+      メニューへ
+    </button>
+  </div>
+</section>
+
+  <!-- メニュー画面 -->
+  <section id="menuScreen" class="screen">
+    <img src="images/menu.png" class="full-bg" alt="メニュー画面">
+
+    <div class="money-hud">
+      <div>目標資金：<span id="targetMoney">10,000,000</span> クレジット</div>
+      <div>現在資産：<span id="currentMoney">1,000,000</span> クレジット</div>
+    </div>
+
+    <button id="fxMenuBtn" class="click-area fx-menu-area">
+      FX
+    </button>
+
+    <button id="stockMenuBtn" class="click-area stock-menu-area">
+      株価
+    </button>
+  </section>
+
+  <!-- FX画面 -->
+  <section id="fxScreen" class="screen">
+
+  <button id="backToMenuFromFX" class="back-btn">
+    戻る
+  </button>
+
+  <div id="fxGameRoot">
+    FX画面読込中...
+  </div>
+
+</section>
+
+  <!-- 株価メニュー画面 -->
+ <section id="stockScreen" class="screen">
+
+  <img
+    src="images/kabumenu.png"
+    class="full-bg"
+    alt=""
+  >
+
+  <div class="money-hud">
+  <div>目標資金：<span id="targetMoneyStockMenu">10,000,000</span> クレジット</div>
+  <div>現在資産：<span id="currentMoneyStockMenu">1,000,000</span> クレジット</div>
+</div>
+
+  <button id="millenniumBtn"
+          class="stock-btn millennium-area">
+  </button>
+
+  <button id="gehennaBtn"
+          class="stock-btn gehenna-area">
+  </button>
+
+  <button id="trinityBtn"
+          class="stock-btn trinity-area">
+  </button>
+
+  <button id="abydosBtn"
+          class="stock-btn abydos-area">
+  </button>
+
+  <button id="hyakkiBtn"
+          class="stock-btn hyakki-area">
+  </button>
+
+  <button id="backToMenuFromStock"
+          class="back-btn">
+    戻る
+  </button>
+
+</section>
+
+<section id="stockTradeScreen" class="screen">
+
+  <button id="backToStockMenu"
+          class="back-btn">
+    戻る
+  </button>
+
+  <div id="stockTradeRoot">
+  </div>
+
+</section>
+
+    <!-- クリア画面 -->
+  <section id="clearScreen" class="screen">
+    <img
+      src="images/clear_screen.png"
+      class="full-bg"
+      alt="clear"
+    >
+
+    <button id="clearMenuBtn"
+            class="menu-return-btn">
+      メニューへ
+    </button>
+  </section>
+
+  <!-- ゲームオーバー画面 -->
+  <section id="gameOverScreen" class="screen">
+    <img
+      src="images/gameover_screen.png"
+      class="full-bg"
+      alt="gameover"
+    >
+
+    <button id="retryBtn"
+            class="gameover-btn retry-btn">
+      リトライ
+    </button>
+
+    <button id="gameOverMenuBtn"
+            class="gameover-btn menu-btn">
+      メニュー
+    </button>
+  </section>
+
+
+  <!-- JS読み込み -->
+  <script src="js/main.js"></script>
+  <script src="js/story.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/fx.js"></script>
+  <script src="js/stock.js"></script>
+
+</body>
+</html>
