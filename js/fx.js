@@ -388,16 +388,20 @@ function startFXLogic() {
 
     balance -= margin;
 
-    positions.push({
-      id: crypto.randomUUID(),
-      side,
-      amount,
-      entry,
-      leverage,
-      margin
-    });
+positions.push({
+  id: crypto.randomUUID(),
+  side,
+  amount,
+  entry,
+  leverage,
+  margin
+});
 
-    updateUI();
+if (typeof playSe === "function") {
+  playSe(seToku);
+}
+
+updateUI();
   }
 
   function closePosition(id) {
@@ -407,14 +411,23 @@ function startFXLogic() {
     const p = positions[index];
     const pl = calcPL(p);
 
-    balance += p.margin + pl;
-    positions.splice(index, 1);
+balance += p.margin + pl;
+positions.splice(index, 1);
 
-    flash(`決済：${pl >= 0 ? "+" : ""}${fmt(pl)} クレジット`);
-    updateUI();
+if (typeof playSe === "function") {
+  if (pl >= 0) {
+    playSe(seToku);
+  } else {
+    playSe(seSonn);
   }
+}
 
-  function closeAll() {
+flash(`決済：${pl >= 0 ? "+" : ""}${fmt(pl)} クレジット`);
+updateUI();
+
+}
+
+function closeAll() {
     positions.map(p => p.id).forEach(closePosition);
   }
 
