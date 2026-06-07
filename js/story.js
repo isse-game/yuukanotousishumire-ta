@@ -157,6 +157,7 @@ document.addEventListener(
       btn.addEventListener(
         "click",
         () => {
+          playBgm(bgmMenu);
           showScreen("menuScreen");
         }
       );
@@ -174,7 +175,7 @@ document.addEventListener(
         () => {
 
           clearInterval(typingTimer);
-
+          playBgm(bgmMenu);
           showScreen("menuScreen");
 
         }
