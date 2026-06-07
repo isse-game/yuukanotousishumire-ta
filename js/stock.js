@@ -122,18 +122,31 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!btn) return;
 
     btn.addEventListener("click", () => {
-      currentStockKey = key;
-      showScreen("stockTradeScreen");
-      initStockTrade();
+currentStockKey = key;
+
+showScreen("stockTradeScreen");
+
+if (typeof playBgm === "function") {
+  playBgm(bgmStock);
+}
+
+initStockTrade();
     });
   });
 
-  const backBtn = document.getElementById("backToStockMenu");
-  if (backBtn) {
-    backBtn.addEventListener("click", () => {
-      showScreen("stockScreen");
-    });
-  }
+const backBtn = document.getElementById("backToStockMenu");
+
+if (backBtn) {
+  backBtn.addEventListener("click", () => {
+
+    if (typeof playBgm === "function") {
+      playBgm(bgmMenu);
+    }
+
+    showScreen("stockScreen");
+
+  });
+}
 });
 
 function initStockTrade() {
@@ -396,25 +409,36 @@ function startStockLogic() {
     updateUI();
   }
 
-  function sellStock() {
-    const amount = Number(document.getElementById("stockAmount").value);
+function sellStock() {
+  const amount = Number(document.getElementById("stockAmount").value);
 
-    if (state.shares < amount) {
-      alert("保有株数が足りません。");
-      return;
-    }
-
-    const income = Math.round(state.price * amount);
-
-    state.shares -= amount;
-
-    if (state.shares === 0) {
-      state.avgPrice = 0;
-    }
-
-    setCurrentMoney(gameState.currentMoney + income);
-    updateUI();
+  if (state.shares < amount) {
+    alert("保有株数が足りません。");
+    return;
   }
+
+  const income = Math.round(state.price * amount);
+  const costBasis = Math.round(state.avgPrice * amount);
+  const realizedProfit = income - costBasis;
+
+  state.shares -= amount;
+
+  if (state.shares === 0) {
+    state.avgPrice = 0;
+  }
+
+  setCurrentMoney(gameState.currentMoney + income);
+
+  if (typeof playSe === "function") {
+    if (realizedProfit >= 0) {
+      playSe(seToku);
+    } else {
+      playSe(seSonn);
+    }
+  }
+
+  updateUI();
+}
 
   function triggerNews() {
     const list = stockNews[currentStockKey];
