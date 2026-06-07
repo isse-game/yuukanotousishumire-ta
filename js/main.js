@@ -96,23 +96,31 @@ function addCurrentMoney(value) {
 
 function checkGameClear() {
   if (gameState.currentMoney >= gameState.targetMoney) {
+
+    if (typeof stopAllBgm === "function") {
+      stopAllBgm();
+    }
+
+    if (typeof playSe === "function") {
+      playSe(seClear);
+    }
+
     showScreen("clearScreen");
   }
 }
 
 function checkGameOver() {
   if (gameState.currentMoney <= 0) {
+
+    if (typeof stopAllBgm === "function") {
+      stopAllBgm();
+    }
+
+    if (typeof playSe === "function") {
+      playSe(seGameOver);
+    }
+
     showScreen("gameOverScreen");
-  }
-}
-
-// =====================
-// クリア判定
-// =====================
-
-function checkGameClear() {
-  if (gameState.currentMoney >= gameState.targetMoney) {
-    alert("目標資金達成！ミレニアム再建成功！");
   }
 }
 
@@ -123,4 +131,8 @@ function checkGameClear() {
 document.addEventListener("DOMContentLoaded", () => {
   updateMoneyHud();
   showScreen("titleScreen");
+
+  if (typeof playBgm === "function") {
+    playBgm(bgmTitle);
+  }
 });
