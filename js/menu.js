@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-
+  playBgm(bgmTitle);
   // タイトル → ストーリー
   const titleStartBtn =
     document.getElementById("titleStartBtn");
@@ -8,11 +8,15 @@ document.addEventListener("DOMContentLoaded", () => {
     titleStartBtn.addEventListener("click", () => {
       console.log("ゲーム開始クリック");
 
-      showScreen("storyScreen");
+showScreen("storyScreen");
 
-      if (typeof startStory === "function") {
-        startStory();
-      }
+if (typeof playBgm === "function") {
+  playBgm(bgmStory);
+}
+
+if (typeof startStory === "function") {
+  startStory();
+}
     });
   }
 
@@ -22,11 +26,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (fxMenuBtn) {
     fxMenuBtn.addEventListener("click", () => {
-      showScreen("fxScreen");
+showScreen("fxScreen");
 
-      if (typeof initFXScreen === "function") {
-        initFXScreen();
-      }
+if (typeof playBgm === "function") {
+  playBgm(bgmFX);
+}
+
+if (typeof initFXScreen === "function") {
+  initFXScreen();
+}
     });
   }
 
@@ -37,39 +45,53 @@ document.addEventListener("DOMContentLoaded", () => {
   if (stockMenuBtn) {
     stockMenuBtn.addEventListener("click", () => {
       showScreen("stockScreen");
+      if (typeof playBgm === "function") {
+       playBgm(bgmMenu);
+      }
     });
   }
 
   // FX → メニュー
-  const backToMenuFromFX =
-    document.getElementById("backToMenuFromFX");
+const backToMenuFromFX =
+  document.getElementById("backToMenuFromFX");
 
-  if (backToMenuFromFX) {
-    backToMenuFromFX.addEventListener("click", () => {
+if (backToMenuFromFX) {
+
+  backToMenuFromFX.addEventListener(
+    "click",
+    () => {
+
+      if (typeof playBgm === "function") {
+        playBgm(bgmMenu);
+      }
+
       showScreen("menuScreen");
-    });
-  }
+
+    }
+  );
+
+}
 
   // 株価 → メニュー
-  const backToMenuFromStock =
-    document.getElementById("backToMenuFromStock");
+const backToMenuFromStock =
+  document.getElementById("backToMenuFromStock");
 
-  if (backToMenuFromStock) {
-    backToMenuFromStock.addEventListener("click", () => {
+if (backToMenuFromStock) {
+
+  backToMenuFromStock.addEventListener(
+    "click",
+    () => {
+
+      if (typeof playBgm === "function") {
+        playBgm(bgmMenu);
+      }
+
       showScreen("menuScreen");
-    });
-  }
 
-  // クリア → メニュー
-  const clearMenuBtn =
-    document.getElementById("clearMenuBtn");
+    }
+  );
 
-  if (clearMenuBtn) {
-    clearMenuBtn.addEventListener("click", () => {
-      showScreen("menuScreen");
-    });
-  }
-
+}
   // GAME OVER → メニュー
   const gameOverMenuBtn =
     document.getElementById("gameOverMenuBtn");
